@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Cockpit</title>
+    <link rel="stylesheet" href="css/Bootstrap/css/bootstrap.min.css">
+    <base href="" target="_blank">
+    <link rel="stylesheet" href="css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+</head>
+<style>
+    body {
+        background-color: #e9ecef;
+    }
+
+    .icons {
+        font-size: 20px;
+    }
+
+    .linkMeddream {
+        cursor: pointer;
+    }
+
+    .page-item.active .page-link {
+        background-color: #000;
+        border-color: #000;
+    }
+
+    .page-link,
+    .blackIcon,
+    .blackIcon:hover {
+        color: #000;
+    }
+</style>
+
+
+<body>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Cockpit</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container text-center">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th class="text-left" scope="col">ID</th>
+                        <th class="text-left" scope="col">Name</th>
+                        <th class="text-left" scope="col">Accession</th>
+                        <th class="text-left" scope="col">Modality</th>
+                        <th class="text-left" scope="col">Description</th>
+                        <th class="text-left" scope="col">Date Time</th>
+                        <th class="text-left" scope="col">Received On</th>
+                        <th class="text-left" scope="col">Source AE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="linkMeddream" id="medDream1" onclick="postToken(event, true)"
+                        data-studyId="3">
+                        <td class="text-left">
+                            <div>
+                                <input type="checkbox">
+                            </div>
+                        </td>
+                        <td class="icons text-left"><span><i class="fas fa fa-eye"></i></span></td>
+                        <td class="text-left">7</td>
+                        <td class="text-left">Rubo Demo</td>
+                        <td class="text-left"></td>
+                        <td class="text-left"></td>
+                        <td class="text-left">Brain</td>
+                        <td class="text-left">2016-02-16 15:08:09.0000</td>
+                        <td class="text-left"></td>
+                        <td class="text-left"></td>
+                    </tr>
+
+                    <tr class="linkMeddream" id="medDream2"
+                        data-studyId="3" onclick="postToken(event, true)">
+                        <td class="text-left">
+                            <div>
+                                <input type="checkbox">
+                            </div>
+                        </td>
+                        <td class="icons text-left"><span><i class="fas fa fa-eye"></i></span></td>
+                        <td class="text-left">27723</td>
+                        <td class="text-left">Rubo Demo</td>
+                        <td class="text-left"></td>
+                        <td class="text-left"></td>
+                        <td class="text-left">No finding</td>
+                        <td class="text-left">2016-02-16 15:08:09.0000</td>
+                        <td class="text-left"></td>
+                        <td class="text-left"></td>
+                    </tr>
+                    <tr class="linkMeddream" id="medDream3"
+                        data-studyid="1.3.12.2.1107.5.4.3.123456789012345.19950922.121803.6"
+                        onclick="postToken(event, true)">
+                        <td class="text-left">
+                            <div>
+                                <input type="checkbox">
+                            </div>
+                        </td>
+                        <td class="icons text-left"><span><i class="fas fa fa-eye"></i></span></td>
+                        <td class="text-left">9</td>
+                        <td class="text-left">Rubo Demo3</td>
+                        <td class="text-left"></td>
+                        <td class="text-left"></td>
+                        <td class="text-left">Brain</td>
+                        <td class="text-left">2016-02-16 15:08:09.0000</td>
+                        <td class="text-left"></td>
+                        <td class="text-left"></td>
+                    </tr>
+                    <tr class="linkMeddream">
+                        <td class="text-left">
+                            <div>
+                                <input type="checkbox">
+                            </div>
+                        </td>
+                        <td class="icons text-left" id="medDream1" onclick="postToken(event, true)"
+                            data-studyId="3"><span><i
+                                    class="fas fa fa-eye"></i></span></td>
+                        <td class="icons text-left">
+                            <span data-studyId="3" onclick="postToken(event, false)"><a
+                                    href="/viewer" class="blackIcon"><i
+                                        class="fas fa-external-link-alt"></i></a></span>
+                        </td>
+                        <td class="text-left">7</td>
+                        <td class="text-left">Anonymized</td>
+                        <td class="text-left">00000004</td>
+                        <td class="text-left"></td>
+                        <td class="text-left">Brain</td>
+                        <td class="text-left">2016-02-16 15:08:09.0000</td>
+                        <td class="text-left"></td>
+                        <td class="text-left"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container">
+            <ul class="pagination justify-content-end">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+
+    <div class="container">
+        <iframe width="100%" id="iframetag" frameBorder="0" class="iframe" height="1200px" src="">
+        </iframe>
+    </div>
+
+
+    <script>
+        function postToken(e, isRowClicked) {
+            var token =  localStorage.getItem('accessToken');
+            console.log('#########Token', token);
+            const toSend =  {
+              "studies": {
+                 "storage": "myDataStore"
+               },
+              "jwt":token
+            };
+
+            const headers = {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': "*"
+            }
+
+            toSend.studies.study = e.currentTarget.dataset.studyid;
+            const jsonString = toSend;
+            console.log(jsonString);
+            axios
+                .post('/postToken', jsonString, headers)
+                .then(data => {
+                    console.log(data.data);
+                    if(data.data.redirect) {
+                        localStorage.setItem('res', data.data.redirectURL);
+                        if (isRowClicked) {
+                            window.location = "http://localhost:8000/viewer";
+                        }
+                        
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                })
+        }
+    </script>
+
+</body>
+
+</html>

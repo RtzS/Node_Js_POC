@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Cockpit</title>
+    <link rel="stylesheet" href="css/Bootstrap/css/bootstrap.min.css">   
+    <link rel="stylesheet" href="css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+</head>
+<style>
+    body {
+        background-color: #e9ecef;
+    }
+
+    .icons {
+        font-size: 20px;
+    }
+
+    .linkMeddream {
+        cursor: pointer;
+    }
+
+    .page-item.active .page-link {
+        background-color: #000;
+        border-color: #000;
+    }
+
+    .page-link {
+        color: #000;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+
+
+<body>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Cockpit</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        </div>
+    </nav>
+
+        <div>
+            <div id="result" class="hidden"></div>
+            <iframe width="100%" id="iframeNewtag" frameBorder="0" class="iframe" height="1200px" src="">
+            </iframe>
+        </div>
+
+
+    <script>
+        document.getElementById('iframeNewtag').src = localStorage.getItem("res");
+    </script>
+
+</body>
+
+</html>

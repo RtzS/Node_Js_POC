@@ -1,0 +1,106 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<title> Cockpit </title>
+<style> 
+Body {
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: #f1f1f1;
+}
+button { 
+       background-color: blue; 
+       width: 100%;
+       color: white;
+        padding: 15px; 
+        margin: 10px 0px; 
+        border: none; 
+        cursor: pointer; 
+        opacity: 0.8;
+         } 
+ form { 
+        border: 3px solid #f1f1f1; 
+        width: 50%;
+        margin: 0 auto;
+    } 
+ input[type=text], input[type=password] { 
+        width: 100%; 
+        margin: 8px 0;
+        padding: 12px 20px; 
+        display: inline-block; 
+        border: 2px solid lightblue; 
+        box-sizing: border-box; 
+    }
+ button:hover { 
+        opacity: 0.7; 
+    } 
+  .cancelbtn { 
+        width: auto; 
+        padding: 10px 18px;
+        margin: 10px 5px;
+    } 
+      
+   
+ .container { 
+        padding: 25px; 
+        background-color: lightblue;
+    } 
+</style> 
+</head>  
+<body>  
+    <center> <h1>Login </h1> </center> 
+    <form id="loginForm">
+        <div class="container"> 
+            <label>Username : </label> 
+            <input type="text" placeholder="Enter Username" name="username" required>
+            <label>Password : </label> 
+            <input type="password" placeholder="Enter Password" name="password" required>
+            <button onclick="login()">Login</button> 
+        </div> 
+    </form>   
+    <script>
+           const headers = {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': "*"
+            }
+          function login() {
+            const form = document.querySelector('form');
+            const formData = Object.fromEntries(new FormData(form).entries());
+            console.log(formData);
+            axios
+                .post('/login', formData, headers)
+                .then(data => {
+                    console.log(data.data); // save received token in local storage
+                    localStorage.setItem("accessToken", data.data.accessToken);
+                    sessionStorage.setItem("accessToken", data.data.accessToken);
+                    if (data.data.accessToken) { 
+                        const myVariable = data.data.accessToken;
+                        // window.location.assign("http://localhost:8000/?token=" + encodeURI(myVariable));
+                        window.location = "http://localhost:8000/worklist"
+                       
+                    }
+                    //  verifyToken(data.data); // verify token is not required on login
+                })
+                .catch(error => {
+                    console.error(error);
+                })
+        }
+        function verifyToken(token) {
+            axios
+                .post('/verify', token, headers)
+                .then(data => {
+                    console.log(data.data);
+                    if(data.data.isSuccessful) {
+                        window.location = data.data.redirectUrl;
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                })
+        }
+    </script>
+</body>   
+</html>
+
+ 
