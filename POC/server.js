@@ -17,7 +17,7 @@ const users = [
         role: 'member'
     }
 ];
-const cockpitRoutes = express.Router();
+const appRoutes = express.Router();
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -84,15 +84,15 @@ const authenticateJWT = (req, res, next) => {
 
 
 /** UI Routing Code */
-cockpitRoutes.route("/worklist").get((req, res) => {
+appRoutes.route("/worklist").get((req, res) => {
     res.sendFile(path.join(__dirname + '/worklist.html'));
 });
 
-cockpitRoutes.route("/viewer").get((req, res) => {
+appRoutes.route("/viewer").get((req, res) => {
     res.sendFile(path.join(__dirname + '/viewer.html'));
 });
 
-app.use('/', cockpitRoutes);
+app.use('/', appRoutes);
 
 app.listen(8000);
 console.log('Now the server is running');
