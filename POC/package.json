@@ -1,0 +1,16 @@
+{
+  "name": "cokpit_docker_app",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "unknown",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.1",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
